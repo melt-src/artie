@@ -6,12 +6,15 @@
 #include <assert.h>
 #include <string.h>
 
+#include "chopdat/chopdat.h"
+
 #define NOFARGS 2
 #define DBPATH "./db/artie.db"
 
 void usage(FILE *stream)
 {
-    fprintf(stream, "usage: ./artie <input.ingr|input.meal|input.plan>\n");
+    fprintf(stream, "usage: ./artie <*.ingr | *.meal | *.plan>\n");
+    fprintf(stream, "usage: ./artie <*.ingr | *.meal | *.plan>\n");
 }
 
 int get_file_ext_code(const char *file_path)
@@ -35,18 +38,18 @@ int get_file_ext_code(const char *file_path)
 int main(int argc, char **argv)
 {
 
-    /* args check */
+    /* args parsing */
     if (argc < NOFARGS) {
         usage(stderr);
         fprintf(stderr, "error: input file is not provided.\n");
         exit(1);
     }
 
-    const char *farg = argv[1];
+    const char *file_path = argv[1];
     int ecode = get_file_ext_code(farg);
 
     if (ecode > 0) {
-        /* csv_table *data = chopdat_csv(farg);
+        chopdat_csv_table *data = chopdat_csv_file(file_path);
         artie_update_db(data, ecode); */
         printf("got here");
     } else {

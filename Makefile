@@ -4,7 +4,6 @@ CC= gcc
 LIB= -lsqlite3
 
 # ----------+ DIRS AND FILENAMES +----------
-PROJNAME = Artie
 SRC = src
 TARGET = artie
 
@@ -18,7 +17,6 @@ $(TARGET) :
 
 # ----------+ CLEAN UP +----------
 clean :
-	@echo ">>> Cleaning up..."
 	rm -f $(BUILD)/*.o $(TARGET)
 
 # ----------+ QUICK RUN +----------

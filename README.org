@@ -27,7 +27,7 @@
   but also:
 
   * keep track of *weight* over the *weeks*,
-  * keep counts of *calories* consumed,
+  * keep count of *calories* consumed,
   * compose a *grocery shopping list*
 
 * How to use:
