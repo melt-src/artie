@@ -1,30 +1,46 @@
 # ----------+ FLAGS +----------
-CFLAGS= -O2 -Wall -Wextra
-CC= gcc
-LIB= -lsqlite3
+CFLAGS = -O2 -Wall -Wextra
+INCLUDE = -Ilib
+CC = gcc
+LIB = -lsqlite3
+CHOPDAT = lib/chopdat
+DVECTOR = lib/dvector
 
-# ----------+ DIRS AND FILENAMES +----------
-SRC = src
-TARGET = artie
+# ----------+ INPUT FILES +----------
 
-INGREDIENTS = db/input.ingr
-MEALS = ./db/input.meal
-PLANS = ./db/input.plan
+INGREDIENTS = db/i.csv
+MEALS = ./db/m.csv
+PLANS = ./db/p.csv
 
 # ----------+ LINKING & COMPILING +----------
-$(TARGET) :
-	$(CC) $(CFLAGS) -o $(TARGET) $(SRC)/main.c $(LIB)
+all : artie
+
+artie : main.o artie.o chopdat.o dvector_ptr.o
+	$(CC) $(CFLAGS) main.o chopdat.o dvector_ptr.o -o artie $(LIB)
+	etags *.[ch]
+
+artie.o : artie.c artie.c
+	$(CC) $(CFLAGS) $(INCLUDE) -c artie.c -o artie.o
+
+chopdat.o : $(CHOPDAT)/chopdat.c $(CHOPDAT)/chopdat.h
+	$(CC) $(CFLAGS) $(INCLUDE) -c $(CHOPDAT)/chopdat.c -o chopdat.o
+
+dvector_ptr.o : $(DVECTOR)/dvector_ptr.c $(DVECTOR)/dvector.h
+	$(CC) $(CFLAGS) $(INCLUDE) -c $(DVECTOR)/dvector_ptr.c -o dvector_ptr.o
+
+main.o : main.c $(CHOPDAT)/chopdat.h $(DVECTOR)/dvector.h
+	$(CC) $(CFLAGS) $(INCLUDE) -c main.c -o main.o
 
 # ----------+ CLEAN UP +----------
 clean :
-	rm -f $(BUILD)/*.o $(TARGET)
+	rm -f *.o artie
 
 # ----------+ QUICK RUN +----------
-ingredients : $(TARGET)
-	./$(TARGET) $(INGREDIENTS)
+ingredients : artie
+	./artie $(INGREDIENTS)
 
-meals : $(TARGET)
-	./$(TARGET) $(MEALS)
+meals : artie
+	./artie $(MEALS)
 
-plans : $(TARGET)
-	./$(TARGET) $(PLANS)
+plans : artie
+	./artie $(PLANS)

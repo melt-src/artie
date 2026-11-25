@@ -1,0 +1,6 @@
+[submodule "lib/chopdat"]
+	path = lib/chopdat
+	url = git@github.com:melt-src/chopdat.git
+[submodule "lib/dvector"]
+	path = lib/dvector
+	url = git@github.com:melt-src/dvector.git
