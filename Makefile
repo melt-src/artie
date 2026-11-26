@@ -16,7 +16,7 @@ PLANS = ./db/p.csv
 all : artie
 
 artie : main.o artie.o chopdat.o dvector_ptr.o
-	$(CC) $(CFLAGS) main.o chopdat.o dvector_ptr.o -o artie $(LIB)
+	$(CC) $(CFLAGS) main.o artie.o chopdat.o dvector_ptr.o -o artie $(LIB)
 	etags *.[ch]
 
 artie.o : artie.c artie.c

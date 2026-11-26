@@ -39,11 +39,11 @@
 
   #+begin_src bash
 
-  $ ./artie input.ingr
+  $ ./artie i.csv
 
   #+end_src
 
-  with the file =input.ingr= looking like this:
+  with the file =i.csv= looking like this:
 
   #+begin_src csv
 
@@ -71,11 +71,11 @@
 
   #+begin_src bash
 
-  $ ./artie input.meal
+  $ ./artie m.csv
 
   #+end_src
 
-  with the file =input.meal= looking like this:
+  with the file =m.csv= looking like this:
 
   #+begin_src csv
 
@@ -108,11 +108,11 @@
 
   #+begin_src bash
 
-  $ ./artie input.plan
+  $ ./artie p.csv
 
   #+end_src
 
-  with the file =input.plan= looking like this:
+  with the file =p.csv= looking like this:
 
   #+begin_src csv
 
@@ -139,11 +139,11 @@
 
   #+begin_src bash
 
-  $ ./artie input.ingr
+  $ ./artie i.csv
 
   #+end_src
 
-  with the file =input.ingr= looking like this:
+  with the file =i.csv= looking like this:
 
   #+begin_src csv
 
@@ -161,7 +161,7 @@
 
   #+end_src
 
-  , if the file =input.ingr= looked like this instead:
+  , if the file =i.csv= looked like this instead:
 
   #+begin_src csv
 

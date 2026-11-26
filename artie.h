@@ -10,6 +10,8 @@
 #ifndef ARTIE_H
 #define ARTIE_H
 
+#include <sqlite3.h>
+
 typedef struct artie_ingredient artie_ingredient;
 typedef struct artie_meal artie_meal;
 typedef struct artie_plan artie_plan;
@@ -42,15 +44,36 @@ typedef enum artie_meal_category
     ARTIE_MEAL_SNACK
 } artie_meal_category;
 
+typedef enum artie_day_of_week
+{
+    MON = 0,
+    TUE,
+    WED,
+    THU,
+    FRI,
+    SAT,
+    SUN
+} artie_day_of_week;
 
-artie_ingredient *artie_ingredient_create(void);
+artie_ingredient *artie_ingredient_create(char *,
+                                          artie_ingredient_category,
+                                          double,
+                                          double,
+                                          double,
+                                          size_t);
 void artie_ingredient_destroy(artie_ingredient *);
+char *artie_ingredient_name(artie_ingredient *);
+artie_ingredient_category artie_ingredient_cat(artie_ingredient *);
+double *artie_ingredient_macrop(artie_ingredient *);
+size_t artie_ingredient_calories(artie_ingredient *);
 
 artie_meal *artie_meal_create(void);
 void artie_meal_destroy(artie_meal *);
 
 artie_plan *artie_plan_create(void);
 void artie_plan_destroy(artie_plan *);
+
+artie_error artie_update_ingredients(sqlite3 *, artie_ingredient *);
 
 #endif /* ARTIE_H */
 
